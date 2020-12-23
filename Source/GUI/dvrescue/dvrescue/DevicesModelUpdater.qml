@@ -12,7 +12,7 @@ Item {
         onTriggered: {
             getDevices().then((result) => {
                 model.update(result.devices);
-                timer.interval = 1000;
+                timer.interval = 100000;
                 timer.start();
             }).catch((errorResult) => {
                 timer.interval = 5000;

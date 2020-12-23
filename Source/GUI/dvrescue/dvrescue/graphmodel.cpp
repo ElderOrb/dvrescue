@@ -46,6 +46,17 @@ void GraphModel::update(QwtQuick2PlotCurve *videoCurve, QwtQuick2PlotCurve *vide
     }
 
     audioCurve->plot()->replotAndUpdate();
+
+    {
+        videoCurve->plot()->pp()->setAxisScale(QwtPlot::yLeft, -50, 50);
+        videoCurve->plot()->pp()->setAxisScale(QwtPlot::xBottom, 0, m_lastFrame);
+
+        audioCurve->plot()->pp()->setAxisScale(QwtPlot::yLeft, -50, 50);
+        audioCurve->plot()->pp()->setAxisScale(QwtPlot::xBottom, 0, m_lastFrame);
+
+        videoCurve->plot()->pp()->replot();
+        audioCurve->plot()->pp()->replot();
+    }
 }
 
 void GraphModel::populate(const QString &fileName)

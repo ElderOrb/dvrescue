@@ -10,6 +10,12 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    qmlRegisterUncreatableMetaObject(QwtQuick2::staticMetaObject,   // static meta object
+                                     "QwtQuick2",                   // import statement
+                                     1, 0,                          // major and minor version of the import
+                                     "QwtQuick2",                   // name in QML
+                                     "Error: namespace");           // error in case someone tries to create a MyNamespace object
+
     qmlRegisterType<Launcher>("Launcher", 0, 1, "Launcher");
     qmlRegisterType<GraphModel>("GraphModel", 1, 0, "GraphModel");
     qmlRegisterType<QwtQuick2Plot>("QwtQuick2", 1, 0, "QwtQuick2Plot");

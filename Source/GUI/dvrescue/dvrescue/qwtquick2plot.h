@@ -33,6 +33,7 @@ public:
     void paint(QPainter* painter);
     Q_INVOKABLE void replotAndUpdate();
     QwtPlot* plot() const;
+    QwtPlot* pp() const;
 
 protected:
     void routeMouseEvents(QMouseEvent* event);
@@ -41,6 +42,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseReleaseEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
+    virtual void hoverMoveEvent(QHoverEvent* event);
     virtual void mouseDoubleClickEvent(QMouseEvent* event);
     virtual void wheelEvent(QWheelEvent *event);
 
@@ -49,6 +51,7 @@ protected:
 private:
     void attach(QObject* child);
     QwtPlot*         m_qwtPlot;
+    QWidget* p;
 
 private Q_SLOTS:
     void updatePlotSize();
@@ -78,6 +81,7 @@ public:
 
     QVector<QPointF>& data() { return m_curveData; }
     QwtPlotCurve* curve() const;
+    QwtPlotCurve* cc() const;
     QwtQuick2Plot* plot() const;
 
     void attach(QwtQuick2Plot* plot);
@@ -103,6 +107,8 @@ private:
     QwtQuick2Plot* m_qwtQuickPlot { nullptr };
     std::unique_ptr<QwtPlotCurve> m_qwtPlotCurve;
     QVector<QPointF> m_curveData;
+
+    std::unique_ptr<QwtPlotCurve> c;
 };
 
 class QwtQuick2PlotGrid : public QObject
@@ -120,6 +126,7 @@ class QwtQuick2PlotGrid : public QObject
     Q_PROPERTY(Qt::PenStyle minorPenStyle READ minorPenStyle WRITE setMinorPenStyle NOTIFY minorPenStyleChanged)
 public:
     QwtQuick2PlotGrid(QObject* parent = nullptr);
+    ~QwtQuick2PlotGrid();
 
     void attach(QwtQuick2Plot* plot);
 
