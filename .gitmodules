@@ -1,0 +1,3 @@
+[submodule "Source/GUI/dvrescue/dvrescue-QtAVPlayer"]
+	path = Source/GUI/dvrescue/dvrescue-QtAVPlayer
+	url = https://github.com/ElderOrb/QtAVPlayer.git
