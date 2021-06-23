@@ -38,7 +38,7 @@ SUBDIRS += \
         dvrescue_tests \
         dvrescue_qmltests
 
-dvrescue-qtavplayer.file = dvrescue-qtavplayer/QtAVPlayerLib.pro
+dvrescue-qtavplayer.file = dvrescue-QtAVPlayer/QtAVPlayerLib.pro
 
 dvrescue.subdir = dvrescue
 dvrescue_tests.subdir = dvrescue.tests
