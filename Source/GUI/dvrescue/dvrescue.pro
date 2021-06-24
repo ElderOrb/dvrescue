@@ -11,8 +11,33 @@ include(ffmpeg.pri)
 QTAVPLAYER = $$absolute_path($$_PRO_FILE_PWD_/dvrescue-QtAVPlayer)
 message('QTAVPLAYER: ' $$QTAVPLAYER)
 
-message('including $$QTAVPLAYER/QtAVPlayerLib.pri')
-include($$QTAVPLAYER/QtAVPlayerLib.pri)
+contains(DEFINES, USE_BREW) {
+    message('using ffmpeg from brew via PKGCONFIG')
+
+    oldConf = $$cat($$QTAVPLAYER/.qmake.conf.backup, lines)
+    isEmpty(oldConf) {
+        oldConf = $$cat($$QTAVPLAYER/.qmake.conf, lines)
+        message('writting backup of original .qmake.conf')
+        write_file($$QTAVPLAYER/.qmake.conf.backup, oldConf)
+    } else {
+        message('reading backup of original .qmake.conf.backup')
+    }
+
+    message('oldConf: ' $$oldConf)
+    write_file($$QTAVPLAYER/.qmake.conf, oldConf)
+
+    pkgConfig = "PKGCONFIG += libavdevice libavcodec libavfilter libavformat libpostproc libswresample libswscale libavcodec libavutil"
+    linkPkgConfig = "CONFIG += link_pkgconfig"
+
+    message('pkgConfig: ' $$pkgConfig)
+    message('linkPkgConfig: ' $$linkPkgConfig)
+
+    write_file($$QTAVPLAYER/.qmake.conf, pkgConfig, append)
+    write_file($$QTAVPLAYER/.qmake.conf, linkPkgConfig, append)
+} else {
+    message('including $$QTAVPLAYER/QtAVPlayerLib.pri')
+    include($$QTAVPLAYER/QtAVPlayerLib.pri)
+}
 
 SUBDIRS += \
         dvrescue-qtavplayer \
