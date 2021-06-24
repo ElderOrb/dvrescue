@@ -30,6 +30,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 QTAVPLAYER_SRC=$$absolute_path(../dvrescue-QtAVPlayer)
 QTAVPLAYER_LIB=$$absolute_path($$OUT_PWD/../dvrescue-QtAVPlayer)
+
+message('using UseQtAVPlayerLib')
 include(../dvrescue-QtAVPlayer/UseQtAVPlayerLib.pri)
 
 include(./dvrescue.pri)

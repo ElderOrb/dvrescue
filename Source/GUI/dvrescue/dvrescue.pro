@@ -8,28 +8,10 @@ USE_BREW = $$(USE_BREW)
 
 include(ffmpeg.pri)
 
-contains(DEFINES, USE_BREW) {
-    message('using ffmpeg from brew via PKGCONFIG')
-
-    pkgConfig = "PKGCONFIG += libavdevice libavcodec libavfilter libavformat libpostproc libswresample libswscale libavcodec libavutil"
-    linkPkgConfig = "CONFIG += link_pkgconfig"
-
-    message('pkgConfig: ' $$pkgConfig)
-    message('linkPkgConfig: ' $$linkPkgConfig)
-
-} else {
-    ffmpegIncludes = "INCLUDEPATH+=$$FFMPEG_INCLUDES"
-    ffmpegLibs = "LIBS+=$$FFMPEG_LIBS"
-
-    message('ffmpegIncludes: ' $$ffmpegIncludes)
-    message('ffmpegLibs: ' $$ffmpegLibs)
-
-    staticffmpeg = "CONFIG += static_ffmpeg"
-    message('staticffmpeg: ' $$ffmpegLibs)
-}
-
 QTAVPLAYER = $$absolute_path($$_PRO_FILE_PWD_/dvrescue-QtAVPlayer)
 message('QTAVPLAYER: ' $$QTAVPLAYER)
+
+message('including $$QTAVPLAYER/QtAVPlayerLib.pri')
 include($$QTAVPLAYER/QtAVPlayerLib.pri)
 
 SUBDIRS += \
