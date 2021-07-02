@@ -59,6 +59,7 @@ jobs:
         cd Source/GUI/dvrescue/build
         ls
         ls ./dvrescue
+        export DYLD_LIBRARY_PATH=.:$DYLD_LIBRARY_PATH
         open ./dvrescue/dvrescue.app
 
   build-macos-no-brew:
@@ -139,6 +140,7 @@ jobs:
         cd Source/GUI/dvrescue/build
         ls
         ls ./dvrescue
+        export DYLD_LIBRARY_PATH=.:$DYLD_LIBRARY_PATH
         open ./dvrescue/dvrescue.app
 
   build-linux:
