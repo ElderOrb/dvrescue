@@ -8,11 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        compiler: ['gcc-9', 'clang-9']
+        compiler: ['clang-9']
         include:
-          - compiler: gcc-9
-            packages: gcc@9
-            env: { 'CC': 'gcc-9', 'CXX': 'g++-9' }
           - compiler: clang-9
             packages: llvm@9
             env: { 'CC': 'clang-9', 'CXX': 'clang++-9' }
@@ -66,11 +63,8 @@ jobs:
 
     strategy:
       matrix:
-        compiler: ['gcc-9', 'clang-9']
+        compiler: ['clang-9']
         include:
-          - compiler: gcc-9
-            packages: gcc@9
-            env: { 'CC': 'gcc-9', 'CXX': 'g++-9' }
           - compiler: clang-9
             packages: llvm@9
             env: { 'CC': 'clang-9', 'CXX': 'clang++-9' }
