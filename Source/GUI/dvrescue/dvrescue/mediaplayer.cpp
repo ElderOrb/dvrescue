@@ -65,7 +65,7 @@ void MediaPlayer::setVideoOutput(QDeclarativeVideoOutput *newVideoOutput)
     auto videoSurface = vo->videoSurface();
 #endif
 
-    p.vo([videoSurface](const QAVVideoFrame &frame) {
+    QObject::connect(&p, &QAVPlayer::videoFrame, &p, [videoSurface](const QAVVideoFrame &frame) {
         QVideoFrame::PixelFormat pf = QVideoFrame::Format_Invalid;
         switch (frame.frame()->format)
         {
@@ -91,7 +91,9 @@ void MediaPlayer::setVideoOutput(QDeclarativeVideoOutput *newVideoOutput)
         }
     });
 
-    p.ao([this](const QAVAudioFrame &frame) { audioOutput.play(frame); });
+    QObject::connect(&p, &QAVPlayer::audioFrame, &p, [this](const QAVAudioFrame &frame) {
+        audioOutput.play(frame);
+    });
 
     Q_EMIT videoOutputChanged();
 }
