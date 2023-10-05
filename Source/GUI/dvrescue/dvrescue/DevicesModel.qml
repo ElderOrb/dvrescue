@@ -25,7 +25,8 @@ ListModel {
     }
 
     function update(devices) {
-        console.debug('got ', devices.length, 'devices')
+        console.debug('got', devices.length, 'devices')
+        console.debug(JSON.stringify(devices, 0, 4));
 
         var newDevices = []
         for(var j = count - 1; j >= 0; --j) {

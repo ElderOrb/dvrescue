@@ -259,7 +259,7 @@ Rectangle {
                     }
                 }
 
-                deviceNameTextField.text: devicesModel.count === 0 ? '' : devicesModel.get(index).name + " (" + devicesModel.get(index).type + ")"
+                deviceNameTextField.text: devicesModel.count === 0 ? '' : devicesModel.get(index).index + ": " + devicesModel.get(index).name + " (" + devicesModel.get(index).type + ")"
             }
         }
     }
