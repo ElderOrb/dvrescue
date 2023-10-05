@@ -115,7 +115,7 @@ Column {
             horizontalAlignment: "AlignRight"
             anchors.right: parent.right
             readOnly: true
-            width: contentWidth
+            width: contentWidth === 0 ? 0 : contentWidth + leftInset + rightInset + leftPadding + rightPadding
             text: FileUtils.getFileName(outputFilePath)
             font.pointSize: 11
 
