@@ -15,7 +15,7 @@ Item {
             console.debug('id: ', id, 'deviceName: ', name, 'deviceType: ', type);
 
             devices.push({
-                            index: id,
+                            id: id,
                             name: name,
                             type: type
                          })
